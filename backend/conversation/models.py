@@ -15,7 +15,7 @@ class Conversation(models.Model):
         editable=False,
     )
 
-    conversation_type = models.CharField(
+    Conversation_type = models.CharField(
         max_length=10,
         choices=ConversationType.choices,
         default=ConversationType.DIRECT,
@@ -31,13 +31,13 @@ class Conversation(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="created_conversations",
+        related_name="created_Conversations",
     )
 
     members = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         through="ConversationMember",
-        related_name="conversations",
+        related_name="Conversations",
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -47,7 +47,7 @@ class Conversation(models.Model):
         ordering = ["-updated_at"]
 
     def __str__(self):
-        return self.name or f"{self.conversation_type} conversation"
+        return self.name or f"{self.Conversation_type} Conversation"
 
 
 class ConversationMember(models.Model):
@@ -61,7 +61,7 @@ class ConversationMember(models.Model):
         editable=False,
     )
 
-    conversation = models.ForeignKey(
+    Conversation = models.ForeignKey(
         Conversation,
         on_delete=models.CASCADE,
         related_name="memberships",
@@ -70,7 +70,7 @@ class ConversationMember(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="conversation_memberships",
+        related_name="Conversation_memberships",
     )
 
     role = models.CharField(
@@ -92,11 +92,11 @@ class ConversationMember(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["conversation", "user"],
-                name="unique_conversation_member",
+                fields=["Conversation", "user"],
+                name="unique_Conversation_member",
             )
         ]
         ordering = ["joined_at"]
 
     def __str__(self):
-        return f"{self.user} - {self.conversation}"
+        return f"{self.user} - {self.Conversation}"

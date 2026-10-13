@@ -10,5 +10,7 @@ urlpatterns = [
     path("api/v1/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/v1/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/v1/", include("users.urls")),
-    path("api/v1/", include("conversitions.urls")),
+    path("api/v1/", include("conversation.urls")),
+    path("api/v1/messages/", include("chat_messages.urls")),
+    path("api/v1/conversations/", include("conversation.urls")),
 ]

@@ -29,7 +29,7 @@ class ConversationSerializer(serializers.ModelSerializer):
         model = Conversation
         fields = [
             "id",
-            "conversation_type",
+            "Conversation_type",
             "name",
             "created_by",
             "members",
@@ -38,7 +38,7 @@ class ConversationSerializer(serializers.ModelSerializer):
 
 
 class ConversationCreateSerializer(serializers.Serializer):
-    conversation_type = serializers.ChoiceField(choices=["direct", "group"])
+    Conversation_type = serializers.ChoiceField(choices=["direct", "group"])
 
     name = serializers.CharField(required=False, allow_blank=True)
 
