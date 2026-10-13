@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "users",
+    "conversitions",
 ]
 
 AUTH_USER_MODEL = "users.User"
