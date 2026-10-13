@@ -8,7 +8,12 @@ import {
 
 import api from "#lib/axiosInstance";
 import type { ApiGroup, ApiUser, Conversation } from "../components/chat/types";
-import { extractList, getErrorMessage, groupToConversation, userToConversation } from "./utils";
+import {
+  extractList,
+  getErrorMessage,
+  groupToConversation,
+  userToConversation,
+} from "./utils";
 
 type ChatState = {
   // data
@@ -43,7 +48,7 @@ export const useChatStore = create<ChatState>()((set, get) => ({
   fetchConversations: async (signal) => {
     set({ loading: true, error: null });
 
-    const [usersRes, conversationsRes] = await Promise.allSettled([
+    const [usersRes, ConversationsRes] = await Promise.allSettled([
       api.get(USERS_ENDPOINT, { signal }),
       api.get(CONVERSATIONS_ENDPOINT, { signal }),
     ]);
@@ -64,11 +69,11 @@ export const useChatStore = create<ChatState>()((set, get) => ({
               "Couldn't load your chats. Please try again.",
             ),
           }),
-  
-      ...(conversationsRes.status === "fulfilled"
+
+      ...(ConversationsRes.status === "fulfilled"
         ? {
-            groups: extractList<ApiGroup>(conversationsRes.value.data)
-              .filter((c) => c.conversation_type === "group")
+            groups: extractList<ApiGroup>(ConversationsRes.value.data)
+              .filter((c) => c.Conversation_type === "group")
               .map(groupToConversation),
           }
         : {}),
@@ -88,7 +93,7 @@ export const useChatStore = create<ChatState>()((set, get) => ({
       .map((u) => u.apiId);
 
     const { data } = await api.post(CREATE_CONVERSATION_ENDPOINT, {
-      conversation_type: "group",
+      Conversation_type: "group",
       name,
       member_ids: memberIds,
     });

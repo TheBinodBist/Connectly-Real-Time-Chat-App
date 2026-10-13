@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import Sidebar from "#components/chat/Sidebar";
 import { TooltipProvider } from "#components/ui/tooltip";
 import { useChatStore } from "#lib/chatStore";

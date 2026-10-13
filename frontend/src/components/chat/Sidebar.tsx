@@ -28,7 +28,7 @@ export default function Sidebar({ onLogout }: Props) {
 
   // Derived data is computed here (not inside the store selector) so the
   // array reference stays stable between renders.
-  const conversations = useMemo(() => {
+  const Conversations = useMemo(() => {
     const all = [...groups, ...users];
     const query = search.trim().toLowerCase();
     if (!query) return all;
@@ -86,35 +86,35 @@ export default function Sidebar({ onLogout }: Props) {
 
           {!loading &&
             !error &&
-            conversations.map((conversation) => (
+            Conversations.map((Conversation) => (
               <button
-                key={conversation.key}
-                onClick={() => selectConversation(conversation.key)}
+                key={Conversation.key}
+                onClick={() => selectConversation(Conversation.key)}
                 className={cn(
                   "flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left transition-colors",
-                  selectedKey === conversation.key
+                  selectedKey === Conversation.key
                     ? "bg-accent"
                     : "hover:bg-accent/50",
                 )}
               >
                 <ConversationAvatar
-                  conversation={conversation}
+                  Conversation={Conversation}
                   className="h-12 w-12"
                 />
                 <div className="min-w-0 flex-1">
                   <h3 className="truncate text-[15px] font-semibold">
-                    {conversation.name}
+                    {Conversation.name}
                   </h3>
-                  {conversation.subtitle && (
+                  {Conversation.subtitle && (
                     <p className="mt-0.5 truncate text-sm text-muted-foreground">
-                      {conversation.subtitle}
+                      {Conversation.subtitle}
                     </p>
                   )}
                 </div>
               </button>
             ))}
 
-          {!loading && !error && conversations.length === 0 && (
+          {!loading && !error && Conversations.length === 0 && (
             <p className="p-6 text-center text-sm text-muted-foreground">
               {search.trim() ? "No chats found." : "No chats yet."}
             </p>

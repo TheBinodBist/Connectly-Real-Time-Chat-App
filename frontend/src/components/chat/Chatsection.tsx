@@ -28,7 +28,7 @@ export default function ChatSection() {
   const groups = useChatStore((s) => s.groups);
   const selectedKey = useChatStore((s) => s.selectedKey);
 
-  const conversation = useMemo(
+  const Conversation = useMemo(
     () => [...groups, ...users].find((c) => c.key === selectedKey) ?? null,
     [groups, users, selectedKey],
   );
@@ -45,7 +45,7 @@ export default function ChatSection() {
     setMessage("");
   };
 
-  if (!conversation) {
+  if (!Conversation) {
     return (
       <main className="hidden min-w-0 flex-1 flex-col bg-background md:flex">
         <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
@@ -70,15 +70,15 @@ export default function ChatSection() {
     <main className="hidden min-w-0 flex-1 flex-col bg-background md:flex">
       {/* Header */}
       <header className="flex items-center gap-3 border-b bg-card px-4 py-3 sm:px-6">
-        <ConversationAvatar conversation={conversation} className="h-10 w-10" />
+        <ConversationAvatar Conversation={Conversation} className="h-10 w-10" />
 
         <div className="min-w-0 flex-1">
           <h2 className="truncate font-semibold leading-tight">
-            {conversation.name}
+            {Conversation.name}
           </h2>
-          {conversation.subtitle && (
+          {Conversation.subtitle && (
             <p className="truncate text-xs text-muted-foreground">
-              {conversation.subtitle}
+              {Conversation.subtitle}
             </p>
           )}
         </div>
@@ -117,12 +117,12 @@ export default function ChatSection() {
       {/* Messages placeholder */}
       <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
         <ConversationAvatar
-          conversation={conversation}
+          Conversation={Conversation}
           className="h-20 w-20"
           textClassName="text-2xl"
           iconClassName="h-9 w-9"
         />
-        <h3 className="text-lg font-semibold">{conversation.name}</h3>
+        <h3 className="text-lg font-semibold">{Conversation.name}</h3>
         <p className="max-w-xs text-sm text-muted-foreground">
           No messages yet. Say hello 👋
         </p>

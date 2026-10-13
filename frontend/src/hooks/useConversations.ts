@@ -31,6 +31,11 @@ export function useConversations() {
 
     if (signal?.aborted) return;
 
+
+    if (conversationsRes.status === "rejected") {
+      console.error("Couldn't load conversations:", conversationsRes.reason);
+    }
+
     if (usersRes.status === "fulfilled") {
       setUsers(
         extractList<ApiUser>(usersRes.value.data).map(userToConversation),
@@ -44,13 +49,11 @@ export function useConversations() {
       );
     }
 
-    // /conversations/ returns direct + group chats. Direct chats are listed
-    // from /users/ for now, so keep only groups here. A failure here
-    // shouldn't block direct chats from showing.
+
     if (conversationsRes.status === "fulfilled") {
       setGroups(
         extractList<ApiGroup>(conversationsRes.value.data)
-          .filter((c) => c.conversation_type === "group")
+          .filter((c) => c.Conversation_type === "group")
           .map(groupToConversation),
       );
     }
@@ -68,7 +71,7 @@ export function useConversations() {
     setGroups((prev) => [group, ...prev.filter((g) => g.key !== group.key)]);
   }, []);
 
-  // Throws on failure so the caller (e.g. the create-group form) can show the error.
+
   const createGroup = useCallback(
     async (name: string, memberKeys: string[]) => {
       const memberIds = users

@@ -1,4 +1,3 @@
-
 export type ApiUser = {
   id: number | string;
   username?: string;
@@ -9,7 +8,7 @@ export type ApiUser = {
 
 export type ApiGroup = {
   id: number | string;
-  conversation_type?: "direct" | "group";
+  Conversation_type?: "direct" | "group";
   name?: string | null;
   display_name?: string;
   members?: unknown[];
@@ -17,7 +16,6 @@ export type ApiGroup = {
 };
 
 export type ConversationKind = "user" | "group";
-
 
 export type Conversation = {
   key: string; // unique across kinds, e.g. "user:1" / "group:1"
