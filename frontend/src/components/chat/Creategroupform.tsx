@@ -17,7 +17,6 @@ export default function CreateGroupForm({ onDone }: Props) {
   const users = useChatStore((s) => s.users);
   const createGroup = useChatStore((s) => s.createGroup);
 
-  // Form-only state stays local; shared state lives in the store.
   const [name, setName] = useState("");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<Set<string>>(new Set());

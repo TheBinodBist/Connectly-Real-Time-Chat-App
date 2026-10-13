@@ -7,9 +7,9 @@ import type { Conversation } from "./types";
 
 type Props = {
   Conversation: Pick<Conversation, "kind" | "initials" | "color">;
-  className?: string; // size, e.g. "h-12 w-12"
-  textClassName?: string; // initials size, e.g. "text-2xl"
-  iconClassName?: string; // group icon size, e.g. "h-6 w-6"
+  className?: string;
+  textClassName?: string;
+  iconClassName?: string; 
 };
 
 export default function ConversationAvatar({

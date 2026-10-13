@@ -16,18 +16,18 @@ import {
 } from "./utils";
 
 type ChatState = {
-  // data
+
   users: Conversation[];
   groups: Conversation[];
   loading: boolean;
   error: string | null;
 
-  // ui
+
   search: string;
   selectedKey: string | null;
   groupDialogOpen: boolean;
 
-  // actions
+
   fetchConversations: (signal?: AbortSignal) => Promise<void>;
   setSearch: (value: string) => void;
   selectConversation: (key: string | null) => void;
@@ -86,7 +86,7 @@ export const useChatStore = create<ChatState>()((set, get) => ({
 
   setGroupDialogOpen: (groupDialogOpen) => set({ groupDialogOpen }),
 
-  // Throws on failure so the form can show the error.
+
   createGroup: async (name, memberKeys) => {
     const memberIds = get()
       .users.filter((u) => memberKeys.includes(u.key))

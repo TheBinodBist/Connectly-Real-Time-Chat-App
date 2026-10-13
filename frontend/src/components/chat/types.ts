@@ -18,11 +18,20 @@ export type ApiGroup = {
 export type ConversationKind = "user" | "group";
 
 export type Conversation = {
-  key: string; // unique across kinds, e.g. "user:1" / "group:1"
-  apiId: number | string;
-  kind: ConversationKind;
+  key: string;
+  apiId: string;
+  conversationId?: string;
+  kind: "user" | "group";
   name: string;
-  subtitle: string;
+  subtitle?: string;
   initials: string;
   color: string;
+};
+
+export type ChatMessage = {
+  id: string;
+  conversation: string;
+  sender: string;
+  content: string;
+  created_at: string;
 };

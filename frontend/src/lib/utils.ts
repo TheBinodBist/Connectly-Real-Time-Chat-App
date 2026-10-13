@@ -59,7 +59,7 @@ export function extractList<T>(data: unknown): T[] {
   return (data as { results?: T[] } | null)?.results ?? [];
 }
 
-// Surfaces DRF errors: {"detail": "..."} or field errors like {"name": ["..."]}.
+
 export const getErrorMessage = (err: unknown, fallback: string) => {
   const data = (err as { response?: { data?: unknown } })?.response?.data;
 

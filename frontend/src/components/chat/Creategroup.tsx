@@ -10,8 +10,6 @@ import CreateGroupForm from "./Creategroupform";
 
 
 
-// Dialog shell only. Open/closed state lives in the store, so any component
-// can open it with setGroupDialogOpen(true).
 export default function CreateGroup() {
   const open = useChatStore((s) => s.groupDialogOpen);
   const setOpen = useChatStore((s) => s.setGroupDialogOpen);
@@ -26,7 +24,7 @@ export default function CreateGroup() {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Mounted only while open, so its local state resets on every open. */}
+
         {open && <CreateGroupForm onDone={() => setOpen(false)} />}
       </DialogContent>
     </Dialog>

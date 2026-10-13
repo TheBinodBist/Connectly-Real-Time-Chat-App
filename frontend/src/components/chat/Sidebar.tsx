@@ -26,8 +26,7 @@ export default function Sidebar({ onLogout }: Props) {
   const selectConversation = useChatStore((s) => s.selectConversation);
   const fetchConversations = useChatStore((s) => s.fetchConversations);
 
-  // Derived data is computed here (not inside the store selector) so the
-  // array reference stays stable between renders.
+  
   const Conversations = useMemo(() => {
     const all = [...groups, ...users];
     const query = search.trim().toLowerCase();
